@@ -1,6 +1,4 @@
 # Hive
-<<<<<<< HEAD
-=======
 
 A local AI life assistant for friends. Runs on a Raspberry Pi. No cloud, no subscriptions.
 
@@ -190,4 +188,3 @@ Expected response time: 4-7 seconds for typical queries. Tokens stream from seco
 ---
 
 *Hacktoberfest 2026 — Build for a Friend*
->>>>>>> 3c08568 (first commit)
