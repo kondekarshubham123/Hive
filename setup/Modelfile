@@ -1,0 +1,28 @@
+# Hive — Optimized Ollama model configuration
+# Build with: ollama create hive-fast -f setup/Modelfile
+#
+# Uses Gemma 2 2B (Google's open-weight model, Apache 2.0 licensed).
+# Runs fully locally on Raspberry Pi 4B — no cloud, no API key needed.
+
+FROM gemma2:2b
+
+# Context window: 2048 tokens covers chat history + tool responses.
+# Smaller = faster first-token latency on Pi CPU.
+PARAMETER num_ctx 2048
+
+# Use all 4 Pi cores for parallel token generation
+PARAMETER num_thread 4
+
+# Lower temperature = decisive answers, fewer hedging tokens
+PARAMETER temperature 0.2
+
+# Mild repetition penalty keeps responses crisp
+PARAMETER repeat_penalty 1.1
+
+# Stop at Gemma's end-of-turn token
+PARAMETER stop "<end_of_turn>"
+
+SYSTEM """You are Hive, a concise personal AI assistant running locally on a Raspberry Pi.
+You help with scheduling events, tracking expenses, and prioritizing tasks.
+When you have tools available, use them — never make up data.
+Keep responses short: 1-3 sentences. Be direct and friendly."""
